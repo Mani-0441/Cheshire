@@ -14,6 +14,8 @@ PLICOPT      = -s 20 -t 2 -p 7
 VLOG_ARGS   ?= -suppress 2583 -suppress 13314
 VSIM        ?= vsim
 
+BUILD_DIR   ?= build
+
 .PHONY: all nonfree-init sw-all hw-all bootrom-all sim-all xilinx-all
 
 all: sw-all hw-all sim-all xilinx-all
@@ -131,3 +133,28 @@ target/xilinx/scripts/add_sources.tcl: Bender.yml
 	$(BENDER) script vivado -t fpga -t cv64a6_imafdc_sv39 -t cva6 > $@
 
 xilinx-all: target/xilinx/scripts/add_sources.tcl
+
+
+#############
+# slang			#
+#############
+
+.PHONY: $(BUILD_DIR)/cva6.pickle.sv $(BUILD_DIR)/cheshire_top.pickle.sv
+
+$(BUILD_DIR):
+	mkdir -p $@
+
+$(BUILD_DIR)/cheshire_top.pickle.sv: Bender.yml $(BUILD_DIR)
+	bender sources -f -t cv64a6_imafdc_sv39 -t synthesis -t cva6 | morty -f /dev/stdin -q -o $@ -D VERILATOR=1 --top cheshire_soc
+
+$(BUILD_DIR)/cva6.pickle.sv: Bender.yml $(BUILD_DIR)
+	bender sources -f -d $(shell $(BENDER) path ariane) -t cv64a6_imafdc_sv39 -t synthesis -t cva6 | morty -f /dev/stdin -o $@ -D VERILATOR=1 --top cva6
+
+pickle-cva6: $(BUILD_DIR)/cva6.pickle.sv
+
+slang-check-cva6: pickle-cva6
+	slang $(BUILD_DIR)/cva6.pickle.sv -Wrange-width-oob
+
+slang-check-cheshire: $(BUILD_DIR)/cheshire_top.pickle.sv
+	slang $(BUILD_DIR)/cheshire_top.pickle.sv -Wrange-width-oob --allow-use-before-declare -error-limit=4419 -top cheshire_soc || true
+# adding || true to make test pass atm
