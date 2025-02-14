@@ -53,3 +53,5 @@
 #target/xilinx/out
 #target/xilinx/scripts/add_sources.*
 #vivado*
+.venv
+.bender/git/db/cva6-d9230a83a4be3a2a/objects/pack

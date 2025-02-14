@@ -1,0 +1,10 @@
+c082d74f5db9d7b765d1a95129459bbbc63bf172	not-for-merge	branch 'ci/actions' of https://github.com/pulp-platform/opentitan_peripherals
+906a57149dedda0c4c2df56f98dba134b31b48d4	not-for-merge	branch 'fix/extregs' of https://github.com/pulp-platform/opentitan_peripherals
+b4cbaaa948fd592d0eaf4233ced9d1dd011017a8	not-for-merge	branch 'fix/rv_plic' of https://github.com/pulp-platform/opentitan_peripherals
+cd3153de2783abd3d03d0595e6c4b32413c62f14	not-for-merge	branch 'master' of https://github.com/pulp-platform/opentitan_peripherals
+45d9755013aede6b2ff5104a5945a8811d8aee26	not-for-merge	tag 'v0.1.0' of https://github.com/pulp-platform/opentitan_peripherals
+8f97849e314578969369e8026217b4a61c030ea7	not-for-merge	tag 'v0.2.0' of https://github.com/pulp-platform/opentitan_peripherals
+e38ebcc6dbfe30e03b7548f5acb87a61d0fc17bd	not-for-merge	tag 'v0.2.1' of https://github.com/pulp-platform/opentitan_peripherals
+09f0b4200bdcffc80cb74abdc5a11d7b87c3ed9c	not-for-merge	tag 'v0.3.0' of https://github.com/pulp-platform/opentitan_peripherals
+2a237bafa523627acd5c50332ad092ef821f4dac	not-for-merge	tag 'v0.3.1' of https://github.com/pulp-platform/opentitan_peripherals
+cd3153de2783abd3d03d0595e6c4b32413c62f14	not-for-merge	tag 'v0.4.0' of https://github.com/pulp-platform/opentitan_peripherals
